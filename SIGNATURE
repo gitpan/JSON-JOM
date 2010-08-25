@@ -1,0 +1,53 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.63.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 4c1860a0d12cb1247631be455353047786a2df1a Changes
+SHA1 3ce9a7b21e29776f9c8afe4e8350246cf35ea3e8 Changes.ttl
+SHA1 8bf07d0f421043d76571f31b70e423cd0ccc72ca Changes.xml
+SHA1 4f993f8fe21cd5a030b9020a00b5ff50e6f20ad7 MANIFEST
+SHA1 354096507daf87ed4425cbff4f7aba6cf5bae921 MANIFEST.SKIP
+SHA1 91744294f94329aa9b33a9efd2c6388db179cb56 META.yml
+SHA1 b010fc3a2cd72cc7c3407d0d0d5ad2be3662ee87 Makefile.PL
+SHA1 9b30b0eefae54e2e2df9b787f1d003860046e538 README
+SHA1 8842ca38ce27ccf75e1ce8f5dfb93fa62d933b2e inc/Module/AutoInstall.pm
+SHA1 1ebec4119486a032a5612a403e8d7b7be973e938 inc/Module/Install.pm
+SHA1 bec3c7f9af6e1a3cb4d143249956c98af30f0552 inc/Module/Install/AutoInstall.pm
+SHA1 24038af925a69df41972971356ccce885b0fe2ad inc/Module/Install/Base.pm
+SHA1 8f96eddfef548c9328457fbb17a121631cda356b inc/Module/Install/Can.pm
+SHA1 de189984fc99741cc060d1964f513e45bf6d5c74 inc/Module/Install/DOAPChangeSets.pm
+SHA1 ec29048e48edd9c9c55f9de7b773bd7c904335ad inc/Module/Install/Fetch.pm
+SHA1 01862227830d2547f38275eaee0eb9f5add5a252 inc/Module/Install/Include.pm
+SHA1 0384525d85d51e99532e3ad8729d870113646d14 inc/Module/Install/Makefile.pm
+SHA1 38c657de4d91f5a60ff8e6c6f6a5547daf7c4ab2 inc/Module/Install/Metadata.pm
+SHA1 a615bb050ca0b2d79bfa0224addcb83019a53b09 inc/Module/Install/ReadmeFromPod.pm
+SHA1 5c25f1104c0038041e3b93e0660c39171e4caf2b inc/Module/Install/Win32.pm
+SHA1 94d47349c803c4bd2a9230d25e4db0b6aaf1acd8 inc/Module/Install/WriteAll.pm
+SHA1 1e6399a0585817abef500c34fce676fb9b0545f0 inc/Test/Signature.pm
+SHA1 a17a10d91072deafc19e596bfe6a7ad1b3a2e05e lib/JSON/JOM.pm
+SHA1 42258294180efbe5e7bde4142a7bcc0a96603da6 lib/JSON/JOM/Array.pm
+SHA1 14b4801294f73bc374ea701a14f65849c4e63a8c lib/JSON/JOM/Object.pm
+SHA1 6baa6dbffcbc42353bb50e49b40016768e6f3333 lib/JSON/JOM/Plugins.pod
+SHA1 29cbb1577f4657e232157e278c906941da9c79b8 lib/JSON/JOM/Plugins/Dumper.pm
+SHA1 18203b7e8a1fe565c4054051e7f18a5704184064 lib/JSON/JOM/Plugins/ListUtils.pm
+SHA1 bb128dce2db8ad397dbeb957d79d084cc5d2391a t/00sig.t
+SHA1 9f352967c9ad7cad29cdbdf13d553159b93054f2 t/01basic.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iEYEARECAAYFAkx0/YcACgkQzr+BKGoqfTnKsQCfdT2h0HOfNHFWJOozV1cgwRr9
+vqoAnRYyOrgo1hUFh+BECP/aqubMgwXi
+=LiYL
+-----END PGP SIGNATURE-----

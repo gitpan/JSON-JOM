@@ -1,0 +1,130 @@
+NAME
+    JSON::JOM - the JSON Object Model
+
+SYNOPSIS
+     # from_json and to_json compatible with the JSON module
+     # but build JSON::JOM::Object and JSON::JOM::Array objects
+     use JSON::JOM qw[from_json to_json]; 
+     my $object = from_json('{ ...some json... }');
+ 
+     # JOM objects are blessed hashrefs and arrayrefs
+     # So you can read from them like this...
+     my $thingy = $object->{'foo'}{'bar'}[0]{'quux'};
+ 
+     # But look at this:
+     my $array = $thingy->parentNode->parentNode;
+     print $array->nodePath;  # $['foo']['bar']
+
+DESCRIPTION
+    JSON::JOM provides a DOM-like API for working with JSON.
+
+    While JSON represents JSON arrays as Perl arrayrefs and JSON objects as
+    Perl hashrefs, JSON::JOM represents each as a blessed object.
+
+    Internally, JSON::JOM::Object and JSON::JOM::Array store their data as a
+    hashref or arrayref, so you can still use this pattern of working:
+
+      my $data = JSON::JOM::from_json(<<'JSON');
+      {
+        "foo": {
+          "bar": [
+            { "quux" : 0 },
+            { "quux" : 1 },
+            { "quux" : 2 },
+          ]
+        }
+      }
+      JSON
+  
+      foreach my $obj (@{ $data->{foo}{bar} })
+      {
+        printf("The quux of the matter is: %d\n", $obj->{quux})
+      }
+
+    But all arrays and objects provide various methods to make working with
+    them a bit easier. See JSON::JOM::Object and JSON::JOM::Array for
+    descriptions of these methods.
+
+    Note that if you use the arrayref/hashref way of working, things are not
+    always intuitive:
+
+      $root  = to_jom({});
+      $child = [ 1,2,3 ];
+  
+      # Add $child to our JOM structure:
+      $root->{list} = $child;
+  
+      print $root->{list}->count . "\n";  # prints '3'
+  
+      # Now modify $child
+      push @$child, 4;
+  
+      print $root->{list}->count . "\n";  # still '3'!
+
+    This is because the $child arrayref isn't just placed blindly into the
+    JOM structure, but "imported" into it. Compare the above with:
+
+      $root  = to_jom({});
+      $child = [ 1,2,3 ];
+  
+      # Add $child to our JOM structure, and this time,
+      # set $child to point to the imported list.
+      $child = $root->{list} = $child;
+  
+      print $root->{list}->count . "\n";  # prints '3'
+  
+      # Now modify $child
+      push @$child, 4;
+  
+      print $root->{list}->count . "\n";  # prints '4'
+
+FUNCTIONS
+    This modules provides the following functions. None of them are exported
+    by default.
+
+      use JSON::JOM;              # export nothing
+      use JSON::JOM ':standard';  # export first three
+      use JSON::JOM ':all;        # export everything
+      use JSON::JOM 'to_jom';     # export a particular function
+
+  "from_json($string, \%options)"
+    JSON parser compatible with JSON::from_json.
+
+  "to_json($jom, \%options)"
+    JSON serialiser compatible with JSON::from_json, except that
+    convert_blessed is always true.
+
+  "to_jom($data)"
+    Converts a Perl hashref/arrayref structure to its JOM equivalent.
+
+  "JSON::JOM::ref($var)"
+    Function compatible with the core function "ref", but returns 'ARRAY'
+    and 'HASH' for the JOM-equivalent structures.
+
+    The following will replace the core "ref" with JSON::JOM::ref globally.
+
+      use JSON::JOM '-ref';
+
+    Expect the unexpected. "CORE::ref" can still be called explicitly if you
+    genuinely want to detect the difference between a real hashref/arrayref
+    and a JSON::JOM::Object/Array.
+
+BUGS
+    Please report any bugs to <http://rt.cpan.org/>.
+
+SEE ALSO
+    The real guts of JOM are in JSON::JOM::Object and JSON::JOM::Array.
+
+    JSON::JOM::Plugins.
+
+    JSON.
+
+AUTHOR
+    Toby Inkster <tobyink@cpan.org>.
+
+COPYRIGHT
+    Copyright 2010 Toby Inkster
+
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+

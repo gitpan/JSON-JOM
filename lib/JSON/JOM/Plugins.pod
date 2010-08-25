@@ -1,0 +1,69 @@
+=head1 NAME
+
+JSON::JOM::Plugins - plugin architecture
+
+=head1 DESCRIPTION
+
+Most of the interesting JOM functionality is designed to be implemented via plugins.
+
+Here's a skeleton plugin:
+
+   package JSON::JOM::Plugins::ListUtils;
+   
+   sub extensions
+   {
+      my ($class) = @_;
+      return (
+         ['ARRAY', 'count',  sub { return scalar @{$_[0]}; }],
+         ['ARRAY', 'values', sub { return @{$_[0]}; }],
+         ['HASH',  'count',  sub { return scalar keys %{$_[0]}; }],
+         ['HASH',  'keys',   sub { return keys %{$_[0]}; }],
+         ['HASH',  'values', sub { return values %{$_[0]}; }],
+         );
+   }
+   
+   1;
+
+This adds methods C<count> and C<values> to JSON::JOM::Array objects
+and C<count>, C<keys> and C<values> to JSON::JOM::Object objects.
+
+e.g.
+
+   use JSON::JOM 'to_jom';
+   my $jom = to_jom([1,2,3,4,5,6,7,8,9]);
+   printf("Object has %d values:\n", $jom->count);
+   print "$_\n" foreach $jom->values;
+
+JOM plugins I<must> be named JSON::JOM::Plugins::pluginname or else
+JOM won't be able to load them.
+
+Note that if you're developing code that uses JOM plugins, you don't
+need to do anything to load a plugin - JOM automatically loads all
+installed plugins. However, you can C<require> or C<use> a plugin if
+you want to double-check that it's installed before continuing:
+
+  my $jom = to_jom({...});
+  require JSON::JOM::Plugins::Dumper;
+  print $jom->dump;
+
+=head1 BUGS
+
+Please report any bugs to L<http://rt.cpan.org/>.
+
+=head1 SEE ALSO
+
+L<JSON::JOM>.
+
+=head1 AUTHOR
+
+Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
+
+=head1 COPYRIGHT
+
+Copyright 2010 Toby Inkster
+
+This library is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+=cut
+
