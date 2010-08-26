@@ -6,7 +6,7 @@ use common::sense;
 
 use Scalar::Util qw[];
 
-our $VERSION   = '0.001';
+our $VERSION   = '0.002';
 
 sub new
 {

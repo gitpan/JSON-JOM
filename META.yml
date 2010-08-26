@@ -33,4 +33,4 @@ resources:
   homepage: http://search.cpan.org/dist/JSON-JOM/
   license: http://dev.perl.org/licenses/
   repository: http://goddamn.co.uk/viewvc/perlmods/JSON-JOM/
-version: 0.001
+version: 0.002

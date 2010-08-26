@@ -8,7 +8,7 @@ use JSON qw[];
 use JSON::JOM::Object;
 use JSON::JOM::Array;
 
-our $VERSION   = '0.001';
+our $VERSION   = '0.002';
 our @EXPORT    = qw[];
 our @EXPORT_OK = qw[from_json to_json to_jom ref];
 our %EXPORT_TAGS = (all => \@EXPORT_OK, standard => [qw[from_json to_json to_jom]], default => []);

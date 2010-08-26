@@ -9,7 +9,7 @@ use Scalar::Util qw[];
 
 our ($META, $AUTOLOAD, $EXTENSIONS, $TIEMAP);
 
-our $VERSION   = '0.001';
+our $VERSION   = '0.002';
 
 sub import
 {
@@ -162,23 +162,23 @@ sub sanitise
 {
 	my $value = $_[2];
 	
-	my $new;
-	if (JSON::JOM::ref($value) eq 'ARRAY')
-	{
-		$new = JSON::JOM::Array->new([@$value]);
-	}
-	elsif (JSON::JOM::ref($value) eq 'HASH')
-	{
-		$new = JSON::JOM::Object->new({%$value});
-	}
-	
-	if (defined $new)
+	if (JSON::JOM::ref($value) eq 'ARRAY'
+	or  JSON::JOM::ref($value) eq 'HASH')
 	{
 		my $old = jsonobj $_[0];
-		$new->nodeIndex($_[1]);
-		$new->parentNode($old);
-		$new->rootNode($old->rootNode);
-		$value = $new;
+		my $opts = {
+			nodeIndex  => $_[1],
+			parentNode => $old,
+			rootNode   => $old->rootNode,
+			};
+		if (JSON::JOM::ref($value) eq 'ARRAY')
+		{
+			return JSON::JOM::Array->new([@$value], $opts);
+		}
+		elsif (JSON::JOM::ref($value) eq 'HASH')
+		{
+			return JSON::JOM::Object->new({%$value}, $opts);
+		}
 	}
 	
 	return $value;

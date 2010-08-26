@@ -28,6 +28,17 @@ my:v_0-001
 	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.001.tar.gz> ;
 	rdfs:label      "First release"@en .
 
+my:v_0-002
+
+	a               :Version ;
+	dc:issued       "2010-08-26"^^xsd:date ;
+	:revision       "0.002"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.002.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-001 ;
+		dcs:item [ rdfs:label "rootNode stuff now actually works."@en ; a dcs:Bugfix ]
+		] .
+
 #############################################################
 
 my:project
@@ -46,7 +57,7 @@ my:project
 	:tester         toby:i ;
 	:created        "2010-08-22"^^xsd:date ;
 	:license        <http://dev.perl.org/licenses/> ;
-	:release        my:v_0-001 .
+	:release        my:v_0-001 , my:v_0-002 .
 
 #############################################################
 
