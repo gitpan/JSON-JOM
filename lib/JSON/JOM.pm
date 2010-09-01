@@ -5,10 +5,13 @@ use base qw[Exporter];
 use common::sense;
 
 use JSON qw[];
+
+use JSON::JOM::Node;
 use JSON::JOM::Object;
 use JSON::JOM::Array;
+use JSON::JOM::Value;
 
-our $VERSION   = '0.002';
+our $VERSION   = '0.003';
 our @EXPORT    = qw[];
 our @EXPORT_OK = qw[from_json to_json to_jom ref];
 our %EXPORT_TAGS = (all => \@EXPORT_OK, standard => [qw[from_json to_json to_jom]], default => []);
@@ -19,8 +22,13 @@ our %PRAGMATA  = (
 # provide overriden ref() function
 sub ref ($)
 {
-	return 'ARRAY' if CORE::ref($_[0]) eq 'JSON::JOM::Array';
-	return 'HASH'  if CORE::ref($_[0]) eq 'JSON::JOM::Object';
+	return 'ARRAY'
+		if CORE::ref($_[0]) eq 'JSON::JOM::Array';
+	return 'HASH'
+		if CORE::ref($_[0]) eq 'JSON::JOM::Object';
+	return
+		if CORE::ref($_[0]) eq 'JSON::JOM::Value';
+	
 	return CORE::ref($_[0]);
 }
 
@@ -140,6 +148,9 @@ JSON::JOM - the JSON Object Model
 
 =head1 DESCRIPTION
 
+B<Until version 0.100 the entire JOM API should be considered subject to
+change without notice.>
+
 JSON::JOM provides a DOM-like API for working with JSON.
 
 While L<JSON> represents JSON arrays as Perl arrayrefs and JSON objects as
@@ -169,8 +180,12 @@ But all arrays and objects provide various methods to make working with
 them a bit easier. See L<JSON::JOM::Object> and L<JSON::JOM::Array> for
 descriptions of these methods.
 
-Note that if you use the arrayref/hashref way of working, things are not
-always intuitive:
+Values that the JSON module would represent as a Perl scalar, are
+represented as a JSON::JOM::Value in JOM. This uses L<overload> to
+act like a scalar.
+
+Note that if you use the arrayref/hashref way of working, things
+are not always completely intuitive:
 
   $root  = to_jom({});
   $child = [ 1,2,3 ];
@@ -228,7 +243,7 @@ Converts a Perl hashref/arrayref structure to its JOM equivalent.
 =head2 C<< JSON::JOM::ref($var) >>
 
 Function compatible with the core function C<ref>, but
-returns 'ARRAY' and 'HASH' for the JOM-equivalent structures.
+returns 'ARRAY', 'HASH', etc for the JOM-equivalent structures.
 
 The following will replace the core C<ref> with JSON::JOM::ref
 globally.
@@ -236,8 +251,7 @@ globally.
   use JSON::JOM '-ref';
 
 Expect the unexpected. C<CORE::ref> can still be called explicitly
-if you genuinely want to detect the difference between a real
-hashref/arrayref and a JSON::JOM::Object/Array.
+if you want to get "real" results.
 
 =head1 BUGS
 
@@ -245,8 +259,8 @@ Please report any bugs to L<http://rt.cpan.org/>.
 
 =head1 SEE ALSO
 
-The real guts of JOM are in L<JSON::JOM::Object> and
-L<JSON::JOM::Array>.
+The real guts of JOM are in L<JSON::JOM::Object>,
+L<JSON::JOM::Array> and L<JSON::JOM::Value>.
 
 L<JSON::JOM::Plugins>.
 

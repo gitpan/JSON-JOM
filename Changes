@@ -10,6 +10,13 @@ Home page:    <http://search.cpan.org/dist/JSON-JOM/>
 Bug tracker:  <http://rt.cpan.org/Dist/Display.html?Queue=JSON-JOM>
 Maintainer:   Toby Inkster <mailto:tobyink@cpan.org>
 
+0.003 [2010-09-01]
+ - Split common object/array parts of JOM into a JSON::JOM::Node abstract
+   class.
+ - (Addition) JSON::JOM::Plugins::TreeUtils.
+ - (Addition) Make strings, numbers, booleans and nulls first class members
+   of the JOM.
+
 0.002 [2010-08-26]
  - (Bugfix) rootNode stuff now actually works.
 

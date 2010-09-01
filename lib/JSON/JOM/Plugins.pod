@@ -14,6 +14,7 @@ Here's a skeleton plugin:
    {
       my ($class) = @_;
       return (
+      ## [ target,  method,  coderef ] ,
          ['ARRAY', 'count',  sub { return scalar @{$_[0]}; }],
          ['ARRAY', 'values', sub { return @{$_[0]}; }],
          ['HASH',  'count',  sub { return scalar keys %{$_[0]}; }],
@@ -26,6 +27,12 @@ Here's a skeleton plugin:
 
 This adds methods C<count> and C<values> to JSON::JOM::Array objects
 and C<count>, C<keys> and C<values> to JSON::JOM::Object objects.
+
+Valid targets for plugins are 'ARRAY', 'HASH', 'NULL', 'BOOLEAN', 'NUMBER'
+and 'STRING'. The target 'NODE' is effectively a wild card. Differentiating
+between numbers and strings may not always work as expected, so it's
+recommended that any plugin that targets numbers should also target strings,
+and vice versa.
 
 e.g.
 

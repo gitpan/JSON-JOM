@@ -1,6 +1,6 @@
 package JSON::JOM::Plugins::ListUtils;
 
-our $VERSION   = '0.002';
+our $VERSION   = '0.003';
 
 sub extensions
 {

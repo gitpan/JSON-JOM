@@ -39,6 +39,19 @@ my:v_0-002
 		dcs:item [ rdfs:label "rootNode stuff now actually works."@en ; a dcs:Bugfix ]
 		] .
 
+my:v_0-003
+
+	a               :Version ;
+	dc:issued       "2010-09-01"^^xsd:date ;
+	:revision       "0.003"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.003.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-002 ;
+		dcs:item [ rdfs:label "Make strings, numbers, booleans and nulls first class members of the JOM."@en ; a dcs:Addition ] ;
+		dcs:item [ rdfs:label "JSON::JOM::Plugins::TreeUtils."@en ; a dcs:Addition ] ;
+		dcs:item [ rdfs:label "Split common object/array parts of JOM into a JSON::JOM::Node abstract class."@en  ]
+		] .
+
 #############################################################
 
 my:project
@@ -57,7 +70,7 @@ my:project
 	:tester         toby:i ;
 	:created        "2010-08-22"^^xsd:date ;
 	:license        <http://dev.perl.org/licenses/> ;
-	:release        my:v_0-001 , my:v_0-002 .
+	:release        my:v_0-001 , my:v_0-002 , my:v_0-003 .
 
 #############################################################
 

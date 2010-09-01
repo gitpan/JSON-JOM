@@ -28,7 +28,10 @@ inc/Test/Signature.pm
 
 lib/JSON/JOM/Array.pm
 lib/JSON/JOM/Object.pm
+lib/JSON/JOM/Value.pm
+lib/JSON/JOM/Node.pm
 lib/JSON/JOM/Plugins/Dumper.pm
 lib/JSON/JOM/Plugins/ListUtils.pm
+lib/JSON/JOM/Plugins/TreeUtils.pm
 lib/JSON/JOM/Plugins.pod
 lib/JSON/JOM.pm
