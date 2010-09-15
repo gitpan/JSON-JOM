@@ -9,7 +9,7 @@ use Scalar::Util qw[];
 
 our ($META, $AUTOLOAD, $EXTENSIONS, $TIEMAP);
 
-our $VERSION   = '0.003';
+our $VERSION   = '0.004';
 
 sub import
 {

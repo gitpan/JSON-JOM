@@ -11,7 +11,7 @@ use JSON::JOM::Object;
 use JSON::JOM::Array;
 use JSON::JOM::Value;
 
-our $VERSION   = '0.003';
+our $VERSION   = '0.004';
 our @EXPORT    = qw[];
 our @EXPORT_OK = qw[from_json to_json to_jom ref];
 our %EXPORT_TAGS = (all => \@EXPORT_OK, standard => [qw[from_json to_json to_jom]], default => []);
@@ -20,7 +20,7 @@ our %PRAGMATA  = (
 	);
 
 # provide overriden ref() function
-sub ref ($)
+sub ref (_)
 {
 	return 'ARRAY'
 		if CORE::ref($_[0]) eq 'JSON::JOM::Array';

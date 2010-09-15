@@ -4,14 +4,16 @@ use 5.008;
 use base qw[JSON::JOM::Node];
 use common::sense;
 use overload bool => \&TO_JSON;
-use overload '+0' => \&TO_JSON;
+use overload '0+' => \&TO_JSON;
 use overload '""' => \&TO_JSON;
 
-use Carp;
-use JSON qw[];
-use Scalar::Util qw[];
+use overload 'cmp' => sub { my ($a,$b) = @_; return "$a" cmp "$b"; };
+use overload '<=>' => sub { my ($a,$b) = @_; return (0+$a) <=> (0+$b); };
 
-our $VERSION   = '0.003';
+use B qw[];
+use JSON qw[];
+
+our $VERSION   = '0.004';
 
 sub new
 {
@@ -19,12 +21,31 @@ sub new
 
 	my $self = bless \$data, $class;
 	
+	$self->meta->{typeof} = do
+	{ 
+		my $b_obj = B::svref_2object(\$data);
+		my $flags = $b_obj->FLAGS;
+
+		if (!defined $data)                            { 'NULL' ; }
+		elsif (JSON::is_bool($data))                   { 'BOOLEAN' ; }
+		elsif (
+				(
+					$flags & B::SVf_IOK or
+					$flags & B::SVp_IOK or
+					$flags & B::SVf_NOK or
+					$flags & B::SVp_NOK
+				)
+				and !($flags & B::SVf_POK)
+			)                                           { 'NUMBER' ; }
+		else                                           { 'STRING' ; }
+	};
+	
 	$meta ||= {};
 	while (my ($k,$v) = each %$meta)
 	{
 		$self->meta->{$k} = $v;
 	}
-	
+
 	return $self;
 }
 
@@ -35,7 +56,12 @@ sub TRUE
 
 sub FALSE
 {
-	return __PACKAGE__->new(JSON::true, {});
+	return __PACKAGE__->new(JSON::false, {});
+}
+
+sub NULL
+{
+	return __PACKAGE__->new(undef, {});
 }
 
 sub can
@@ -46,16 +72,30 @@ sub can
 sub typeof
 {
 	my $self = shift;
-	return 'NULL'    unless defined $self->TO_JSON;
-	return 'BOOLEAN' if JSON::is_bool( $self->TO_JSON );
-	return 'NUMBER'  if Scalar::Util::looks_like_number( $self->TO_JSON );
-	return 'STRING';
+	return uc $self->meta->{typeof};
 }
 
 sub TO_JSON
 {
 	my $self = shift;
-	return $$self;
+	my $rv   = $$self;
+	
+	if ($self->typeof eq 'NULL')
+	{
+		return undef;
+	}
+	elsif ($self->typeof eq 'BOOLEAN')
+	{
+		return $rv ? JSON::true : JSON::false;
+	}
+	elsif ($self->typeof eq 'NUMBER')
+	{
+		return 0 + $rv;
+	}
+	else
+	{
+		return "$rv";
+	}
 }
 
 sub isRootNode

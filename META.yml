@@ -19,6 +19,7 @@ no_index:
     - inc
     - t
 requires:
+  B: 0
   Carp: 0
   Exporter: 0
   JSON: 2.00
@@ -33,4 +34,4 @@ resources:
   homepage: http://search.cpan.org/dist/JSON-JOM/
   license: http://dev.perl.org/licenses/
   repository: http://goddamn.co.uk/viewvc/perlmods/JSON-JOM/
-version: 0.003
+version: 0.004
