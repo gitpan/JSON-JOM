@@ -2,7 +2,7 @@ package JSON::JOM::Plugins::Dumper;
 
 use JSON qw[to_json];
 
-our $VERSION   = '0.004';
+our $VERSION   = '0.005';
 
 sub extensions
 {

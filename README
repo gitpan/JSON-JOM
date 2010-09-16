@@ -104,17 +104,6 @@ FUNCTIONS
   "to_jom($data)"
     Converts a Perl hashref/arrayref structure to its JOM equivalent.
 
-  "JSON::JOM::ref($var)"
-    Function compatible with the core function "ref", but returns 'ARRAY',
-    'HASH', etc for the JOM-equivalent structures.
-
-    The following will replace the core "ref" with JSON::JOM::ref globally.
-
-      use JSON::JOM '-ref';
-
-    Expect the unexpected. "CORE::ref" can still be called explicitly if you
-    want to get "real" results.
-
 BUGS
     Please report any bugs to <http://rt.cpan.org/>.
 

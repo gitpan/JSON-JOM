@@ -27,6 +27,7 @@ requires:
   Scalar::Util: 0
   Tie::Array: 0
   Tie::Hash: 0
+  UNIVERSAL::ref: 0.12
   common::sense: 0
   perl: 5.8.0
 resources:
@@ -34,4 +35,4 @@ resources:
   homepage: http://search.cpan.org/dist/JSON-JOM/
   license: http://dev.perl.org/licenses/
   repository: http://goddamn.co.uk/viewvc/perlmods/JSON-JOM/
-version: 0.004
+version: 0.005

@@ -24,6 +24,7 @@ requires            'Scalar::Util'       => 0;
 test_requires       'Test::More'         => '0.61';
 requires            'Tie::Array'         => 0;
 requires            'Tie::Hash'          => 0;
+requires            'UNIVERSAL::ref'     => '0.12';
 
 resources(
 	'homepage'   => "http://search.cpan.org/dist/$dist/",

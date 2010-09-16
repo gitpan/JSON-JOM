@@ -6,14 +6,14 @@ use common::sense;
 use overload bool => \&TO_JSON;
 use overload '0+' => \&TO_JSON;
 use overload '""' => \&TO_JSON;
-
 use overload 'cmp' => sub { my ($a,$b) = @_; return "$a" cmp "$b"; };
 use overload '<=>' => sub { my ($a,$b) = @_; return (0+$a) <=> (0+$b); };
+use UNIVERSAL::ref;
 
 use B qw[];
 use JSON qw[];
 
-our $VERSION   = '0.004';
+our $VERSION   = '0.005';
 
 sub new
 {
@@ -73,6 +73,11 @@ sub typeof
 {
 	my $self = shift;
 	return uc $self->meta->{typeof};
+}
+
+sub ref
+{
+	return;
 }
 
 sub TO_JSON

@@ -2,6 +2,7 @@ package JSON::JOM::Node;
 
 use 5.008;
 use common::sense;
+use UNIVERSAL::ref;
 
 use Carp qw[];
 use Module::Pluggable search_path => qw[JSON::JOM::Plugins], require => 1, sub_name => '_plugins', search_dirs => [qw[lib blib/lib]];
@@ -9,7 +10,7 @@ use Scalar::Util qw[];
 
 our ($META, $AUTOLOAD, $EXTENSIONS, $TIEMAP);
 
-our $VERSION   = '0.004';
+our $VERSION   = '0.005';
 
 sub import
 {
@@ -95,6 +96,7 @@ sub typeof
 {
 	Carp::croak "JSON::JOM::Node is abstract - use a subclass.";
 }
+*ref = \&typeof;
 
 sub TO_JSON
 {

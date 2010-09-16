@@ -63,6 +63,17 @@ my:v_0-004
 		dcs:item [ rdfs:label "JSON::JOM::Value better at distinguishing between numbers and strings."@en ] 
 		] .
 
+my:v_0-005
+
+	a               :Version ;
+	dc:issued       "2010-09-16"^^xsd:date ;
+	:revision       "0.005"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.005.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-004 ;
+		dcs:item [ rdfs:label "Replace my own ref() solution with UNIVERSAL::ref."@en ] 
+		] .
+
 #############################################################
 
 my:project
@@ -81,7 +92,7 @@ my:project
 	:tester         toby:i ;
 	:created        "2010-08-22"^^xsd:date ;
 	:license        <http://dev.perl.org/licenses/> ;
-	:release        my:v_0-001 , my:v_0-002 , my:v_0-003 , my:v_0-004 .
+	:release        my:v_0-001 , my:v_0-002 , my:v_0-003 , my:v_0-004 , my:v_0-005 .
 
 #############################################################
 

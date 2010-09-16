@@ -5,91 +5,26 @@ use base qw[Exporter];
 use common::sense;
 
 use JSON qw[];
+use Scalar::Util qw[];
 
 use JSON::JOM::Node;
 use JSON::JOM::Object;
 use JSON::JOM::Array;
 use JSON::JOM::Value;
 
-our $VERSION   = '0.004';
+our $VERSION   = '0.005';
 our @EXPORT    = qw[];
 our @EXPORT_OK = qw[from_json to_json to_jom ref];
 our %EXPORT_TAGS = (all => \@EXPORT_OK, standard => [qw[from_json to_json to_jom]], default => []);
-our %PRAGMATA  = (
-	'ref' => sub { *CORE::GLOBAL::ref = \&ref; },
-	);
 
-# provide overriden ref() function
-sub ref (_)
+sub ref ($)
 {
-	return 'ARRAY'
-		if CORE::ref($_[0]) eq 'JSON::JOM::Array';
-	return 'HASH'
-		if CORE::ref($_[0]) eq 'JSON::JOM::Object';
-	return
-		if CORE::ref($_[0]) eq 'JSON::JOM::Value';
-	
-	return CORE::ref($_[0]);
-}
-
-# Totally stolen from Pragmatic on CPAN
-# It's OK - licence allows.
-sub import ($)
-{
-	my $argc    = scalar(@_);
-	my $package = shift;
-
-	my $warn = sub (;$) {
-		require Carp;
-		local $Carp::CarpLevel = 2; # relocate to calling package
-		Carp::carp (@_);
-	};
-
-	my $die = sub (;$) {
-		require Carp;
-		local $Carp::CarpLevel = 2; # relocate to calling package
-		Carp::croak (@_);
-	};
-
-	my @imports = grep /^[^-]/, @_;
-	my @pragmata = map { substr($_, 1); } grep /^-/, @_;
-	
-	if ($argc==1 && !@imports && !@pragmata)
+	if (Scalar::Util::blessed($_[0]) =~ /^JSON::JOM::(Node|Object|Array|Value)$/
+	&&  $_[0]->can('ref'))
 	{
-		push @imports, ':default';
+		return $_[0]->ref;
 	}
-
-	# Export first, for side-effects (e.g., importing globals, then
-	# setting them with pragmata):
-	$package->export_to_level (1, $package, @imports)
-		if @imports;
-
-	for (@pragmata)
-	{
-		no strict qw (refs);
-
-		my ($pragma, $args) = split /=/, $_;
-		my (@args) = split /,/, $args || '';
-
-		exists ${"$package\::PRAGMATA"}{$pragma}
-		or &$die ("No such pragma '$pragma'");
-
-		if (ref ${"$package\::PRAGMATA"}{$pragma} eq 'CODE')
-		{
-			&{${"$package\::PRAGMATA"}{$pragma}} ($package, @args)
-				or &$warn ("Pragma '$pragma' failed");
-			# Let inheritance work for barewords:
-		}
-		elsif (my $ref = $package->can(${"$package\::PRAGMATA"}{$pragma}))
-		{
-			&$ref ($package, @args)
-				or &$warn ("Pragma '$pragma' failed");
-		}
-		else
-		{
-			&$die ("Invalid pragma '$pragma'");
-		}
-	}
+	return ref($_[0]);
 }
 
 sub from_json ($;$)
@@ -239,19 +174,6 @@ convert_blessed is always true.
 =head2 C<< to_jom($data) >>
 
 Converts a Perl hashref/arrayref structure to its JOM equivalent.
-
-=head2 C<< JSON::JOM::ref($var) >>
-
-Function compatible with the core function C<ref>, but
-returns 'ARRAY', 'HASH', etc for the JOM-equivalent structures.
-
-The following will replace the core C<ref> with JSON::JOM::ref
-globally.
-
-  use JSON::JOM '-ref';
-
-Expect the unexpected. C<CORE::ref> can still be called explicitly
-if you want to get "real" results.
 
 =head1 BUGS
 

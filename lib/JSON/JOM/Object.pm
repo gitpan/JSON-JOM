@@ -3,10 +3,11 @@ package JSON::JOM::Object;
 use 5.008;
 use base qw[JSON::JOM::Node];
 use common::sense;
+use UNIVERSAL::ref;
 
 use Scalar::Util qw[];
 
-our $VERSION   = '0.004';
+our $VERSION   = '0.005';
 
 sub new
 {
@@ -44,6 +45,7 @@ sub typeof
 {
 	return 'HASH';
 }
+*ref = \&typeof;
 
 sub TO_JSON
 {
