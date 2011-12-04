@@ -1,13 +1,19 @@
 package JSON::JOM::Array;
 
-use 5.008;
+use 5.010;
+use strict;
+use utf8;
+use Object::AUTHORITY;
 use base qw[JSON::JOM::Object];
-use common::sense;
 use UNIVERSAL::ref;
-
 use Scalar::Util qw[];
 
-our $VERSION   = '0.005';
+BEGIN
+{
+	$JSON::JOM::Array::AUTHORITY = 'cpan:TOBYINK';
+	$JSON::JOM::Array::VERSION   = '0.500';
+}
+
 
 sub new
 {
@@ -50,6 +56,36 @@ sub typeof
 sub TO_JSON
 {
 	return [ @{ $_[0] } ];
+}
+
+sub toJSON
+{
+	my ($self, %opts) = @_;
+	
+	return '[]' unless @$self;
+	
+	$opts{indent_count}++;
+	
+	my $indent = ($opts{pretty}||$opts{indent}) ?
+		(($opts{indent_character}||"\t") x ($opts{indent_count}||0)) :
+		undef;
+	my $linebreak = defined $indent ? "\n" : '';
+	my $space_after = ($opts{pretty}||$opts{space_after}) ? ' ' : '';
+	
+	my $rv =
+		join
+			"${space_after},${linebreak}${indent}",
+			map
+				{ $_->toJSON(%opts) }
+				@$self;
+
+	$opts{indent_count}--;
+
+	my $last_indent = ($opts{pretty}||$opts{indent}) ?
+		(($opts{indent_character}||"\t") x ($opts{indent_count} || 0)) :
+		undef;
+
+	return "[${linebreak}${indent}${rv}${linebreak}${last_indent}]";
 }
 
 1;
@@ -164,10 +200,16 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT
 
-Copyright 2010 Toby Inkster
+Copyright 2010-2011 Toby Inkster
 
 This library is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
+
+=head1 DISCLAIMER OF WARRANTIES
+
+THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 =cut
 

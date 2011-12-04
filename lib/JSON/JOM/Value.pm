@@ -1,8 +1,11 @@
 package JSON::JOM::Value;
 
-use 5.008;
+use 5.010;
+use strict;
+use utf8;
+use Object::AUTHORITY;
+
 use base qw[JSON::JOM::Node];
-use common::sense;
 use overload bool => \&TO_JSON;
 use overload '0+' => \&TO_JSON;
 use overload '""' => \&TO_JSON;
@@ -13,7 +16,11 @@ use UNIVERSAL::ref;
 use B qw[];
 use JSON qw[];
 
-our $VERSION   = '0.005';
+BEGIN
+{
+	$JSON::JOM::Value::AUTHORITY = 'cpan:TOBYINK';
+	$JSON::JOM::Value::VERSION   = '0.500';
+}
 
 sub new
 {
@@ -103,6 +110,29 @@ sub TO_JSON
 	}
 }
 
+sub toJSON
+{
+	my ($self, %opts) = @_;
+	my $rv   = $$self;
+
+	if ($self->typeof eq 'NULL')
+	{
+		return 'null';
+	}
+	elsif ($self->typeof eq 'BOOLEAN')
+	{
+		return $rv ? 'true' : 'false';
+	}
+	elsif ($self->typeof eq 'NUMBER')
+	{
+		return 0 + $rv;
+	}
+	else
+	{
+		return JSON::JOM::_string_to_json("$rv", %opts);
+	}
+}
+
 sub isRootNode
 {
 	return;
@@ -136,10 +166,16 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT
 
-Copyright 2010 Toby Inkster
+Copyright 2010-2011 Toby Inkster
 
 This library is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
+
+=head1 DISCLAIMER OF WARRANTIES
+
+THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 =cut
 

@@ -1,0 +1,77 @@
+@prefix :        <http://usefulinc.com/ns/doap#> .
+@prefix dcs:     <http://ontologi.es/doap-changeset#> .
+@prefix dc:      <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix my:      <http://purl.org/NET/cpan-uri/dist/JSON-JOM/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix toby:    <http://tobyinkster.co.uk/#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+my:project :release my:v_0-001 .
+my:v_0-001
+	a               :Version ;
+	dc:issued       "2010-08-25"^^xsd:date ;
+	:revision       "0.001"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.001.tar.gz> ;
+	rdfs:label      "First release"@en .
+
+my:project :release my:v_0-002 .
+my:v_0-002
+	a               :Version ;
+	dc:issued       "2010-08-26"^^xsd:date ;
+	:revision       "0.002"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.002.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-001 ;
+		dcs:item   [ rdfs:label "rootNode stuff now actually works."@en ; a dcs:Bugfix ]
+		] .
+
+my:project :release my:v_0-003 .
+my:v_0-003
+	a               :Version ;
+	dc:issued       "2010-09-01"^^xsd:date ;
+	:revision       "0.003"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.003.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-002 ;
+		dcs:item   [ rdfs:label "Make strings, numbers, booleans and nulls first class members of the JOM."@en ; a dcs:Addition ] ;
+		dcs:item   [ rdfs:label "JSON::JOM::Plugins::TreeUtils."@en ; a dcs:Addition ] ;
+		dcs:item   [ rdfs:label "Split common object/array parts of JOM into a JSON::JOM::Node abstract class."@en  ]
+		] .
+
+my:project :release my:v_0-004 .
+my:v_0-004
+	a               :Version ;
+	dc:issued       "2010-09-15"^^xsd:date ;
+	:revision       "0.004"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.004.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-003 ;
+		dcs:item   [ rdfs:label "JSON::JOM::Value better at distinguishing between numbers and strings."@en ] 
+		] .
+
+my:project :release my:v_0-005 .
+my:v_0-005
+	a               :Version ;
+	dc:issued       "2010-09-16"^^xsd:date ;
+	:revision       "0.005"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.005.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-004 ;
+		dcs:item   [ rdfs:label "Replace my own ref() solution with UNIVERSAL::ref."@en ] 
+		] .
+
+my:project :release my:v_0-500 .
+my:v_0-500
+	a               :Version ;
+	dc:issued       "2011-12-04"^^xsd:date ;
+	:revision       "0.500"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.500.tar.gz> ;
+	rdfs:label      "First stable release"@en ;
+	dcs:changeset [
+		dcs:versus my:v_0-005 ;
+		dcs:item   [ rdfs:label "use 5.010"@en ; a dcs:Update ] ;
+		dcs:item   [ rdfs:label "use Object::AUTHORITY"@en ; a dcs:Update ] ;
+		dcs:item   [ rdfs:label "Module::Package::RDF"@en ;  a dcs:Packaging ] 
+		] .
+

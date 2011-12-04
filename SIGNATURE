@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.63.
+signed via the Module::Signature module, version 0.66.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,44 +14,50 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 389f9f9b3316cf1da6e2000743be6ef5aba878a4 Changes
-SHA1 7557227b0a57c0268ae3a763fc0d8a30457c4f9b Changes.ttl
-SHA1 e737cb8322ca8b3cc64aef77197a16a3887aab3c Changes.xml
-SHA1 dbdb7ec6682f79618b248d9054cecf5036343cd9 MANIFEST
-SHA1 b722715bd022764f04ba60e93c23d1f7c99b7718 MANIFEST.SKIP
-SHA1 b6c28b90664d814f639594fa4470e2588d51dc16 META.yml
-SHA1 2427f3ace1e567209947940fd2991b05330739b5 Makefile.PL
-SHA1 c05ee50f9109ba7d60f31daa426d63139848141c README
-SHA1 8842ca38ce27ccf75e1ce8f5dfb93fa62d933b2e inc/Module/AutoInstall.pm
-SHA1 1ebec4119486a032a5612a403e8d7b7be973e938 inc/Module/Install.pm
-SHA1 bec3c7f9af6e1a3cb4d143249956c98af30f0552 inc/Module/Install/AutoInstall.pm
-SHA1 24038af925a69df41972971356ccce885b0fe2ad inc/Module/Install/Base.pm
-SHA1 8f96eddfef548c9328457fbb17a121631cda356b inc/Module/Install/Can.pm
-SHA1 de189984fc99741cc060d1964f513e45bf6d5c74 inc/Module/Install/DOAPChangeSets.pm
-SHA1 ec29048e48edd9c9c55f9de7b773bd7c904335ad inc/Module/Install/Fetch.pm
-SHA1 01862227830d2547f38275eaee0eb9f5add5a252 inc/Module/Install/Include.pm
-SHA1 0384525d85d51e99532e3ad8729d870113646d14 inc/Module/Install/Makefile.pm
-SHA1 38c657de4d91f5a60ff8e6c6f6a5547daf7c4ab2 inc/Module/Install/Metadata.pm
-SHA1 a615bb050ca0b2d79bfa0224addcb83019a53b09 inc/Module/Install/ReadmeFromPod.pm
-SHA1 5c25f1104c0038041e3b93e0660c39171e4caf2b inc/Module/Install/Win32.pm
-SHA1 94d47349c803c4bd2a9230d25e4db0b6aaf1acd8 inc/Module/Install/WriteAll.pm
-SHA1 1e6399a0585817abef500c34fce676fb9b0545f0 inc/Test/Signature.pm
-SHA1 a167b34075287e86c6ac3a5be6c7b7fa076e1e55 lib/JSON/JOM.pm
-SHA1 1db16fca8db1cc2f522143b7546b04a842ed82e0 lib/JSON/JOM/Array.pm
-SHA1 995eb1d3065a3e210346f05674e7649a535d1ddd lib/JSON/JOM/Node.pm
-SHA1 1fc27791f545181568a99d52165588a9ea3ea959 lib/JSON/JOM/Object.pm
+SHA1 312846490c7f94986ce914307038597248ed4660 Changes
+SHA1 f3296a09eb07898f3ba6dd0ece615dafc1b57e16 LICENSE
+SHA1 508f4c63c4c6602672aaf4438a54867882e4f3e6 MANIFEST
+SHA1 dbfab197fbc1eee2430bd35af9aa260eb2970500 META.yml
+SHA1 c8bbc7c0230334690da1fb48d6d13df4c1631a80 Makefile.PL
+SHA1 86902427c37e0fab978524d05edec4bb331262c3 README
+SHA1 9077c81484ed0b2ddaae2b6a6a4076d88ee117ee examples/example1.pl
+SHA1 5d94bc10deff1dd74e4bc5dfa6fc015e39271f15 inc/Module/AutoInstall.pm
+SHA1 40106479d4e07f379cb82ca1d69fca92e3a40f47 inc/Module/Install.pm
+SHA1 34a24a530ecf0365cc02e4150b06c9bed702a441 inc/Module/Install/AutoInstall.pm
+SHA1 c04f94f91fa97b9f8cfb5a36071098ab0e6c78e3 inc/Module/Install/AutoManifest.pm
+SHA1 ae8aa01a73cb83da31c39e8eed1120c59cb530a1 inc/Module/Install/Base.pm
+SHA1 5c87d2d0e2c08b5173259006c88ad81c24303f9d inc/Module/Install/Can.pm
+SHA1 98daf9d8c50b4b7e8988cf1fa2b86044ad219533 inc/Module/Install/Fetch.pm
+SHA1 f3e008113f7f49b0625083b6cc358a312854f613 inc/Module/Install/Include.pm
+SHA1 e67589fcbacdda6c98ff34d8e26a004ab0467bdc inc/Module/Install/Makefile.pm
+SHA1 209ea405d4ab94475661bb450d0ea042d2ec25b5 inc/Module/Install/Metadata.pm
+SHA1 3b9281ddf7dd6d6f5de0a9642c69333023193c80 inc/Module/Install/Package.pm
+SHA1 b86d0385e10881db680d28bde94f275e49e34a27 inc/Module/Install/TrustMetaYml.pm
+SHA1 1326052d1df1065debee74f9d8583a734b9b3d00 inc/Module/Install/Win32.pm
+SHA1 bb607f3715c40fc3bc1c46496587cdb215bc4fa2 inc/Module/Install/WriteAll.pm
+SHA1 26d58a041cd6b3d21db98b32e8fd1841aae21204 inc/Module/Package.pm
+SHA1 6b807287940754cc31a3db59f2b22e363d5525be inc/Module/Package/Dist/RDF.pm
+SHA1 775bd24f2fdbb6dce51a8b5b0cdb01fccfce83c4 inc/Scalar/Util.pm
+SHA1 b1b664983568bf822c327599eb88e223483ae96a inc/Scalar/Util/PP.pm
+SHA1 eef6bff62046bff2ce08ba132d0b58fba30f40b4 inc/YAML/Tiny.pm
+SHA1 5d6b66a263fadc88b6088eee9830eb1861359ebe lib/JSON/JOM.pm
+SHA1 abcf555f1cf26e624b7d396f4f8f575526c1afea lib/JSON/JOM/Array.pm
+SHA1 eff198660415883c5479bdd5c0f8dff72009c49b lib/JSON/JOM/Node.pm
+SHA1 410c0f2f57c5c679445cf76e64b4765b177d8139 lib/JSON/JOM/Object.pm
 SHA1 cc322f8e1985afdc301916e7b430e61886f2c8a4 lib/JSON/JOM/Plugins.pod
-SHA1 2200ec4552dc94ef7492f6f136ef97b2287d315b lib/JSON/JOM/Plugins/Dumper.pm
-SHA1 c5f1fe9d2ab2efe82b782da9cd9fe8f4f1deb8fc lib/JSON/JOM/Plugins/ListUtils.pm
-SHA1 abec75b9dee2483538fc153b3db6095f7c189955 lib/JSON/JOM/Plugins/TreeUtils.pm
-SHA1 e8f0a46d753533aa73ca68cea3e22306b090d060 lib/JSON/JOM/Value.pm
-SHA1 bb128dce2db8ad397dbeb957d79d084cc5d2391a t/00sig.t
+SHA1 aee0d6d8cadf414602fd4a7b52e98961706f25f0 lib/JSON/JOM/Plugins/Dumper.pm
+SHA1 c62e333daa35c532054b21890f63db3b55dcb880 lib/JSON/JOM/Plugins/ListUtils.pm
+SHA1 41e599f475a8d0d5e42d075dda5ff5eb48812116 lib/JSON/JOM/Plugins/TreeUtils.pm
+SHA1 c58dc8ef4165f233345706682d0b034e77faed73 lib/JSON/JOM/Value.pm
+SHA1 805ef000731d1332ebecbc5df2c6795a632a4a3b meta/changes.ttl
+SHA1 410decfcf2d7c368f40ff5e49890eb60b85ce709 meta/doap.ttl
+SHA1 a3c25713bd57eebaab3bd35f0732af3b0503b44c meta/makefile.ttl
 SHA1 d5ed4a242cc21e550eff355cd5f5284e2479f793 t/01basic.t
 SHA1 607999bf2b7eab189a3f4b72aebc36dc594b66ce t/02ref.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.10 (GNU/Linux)
 
-iEYEARECAAYFAkyR1PoACgkQzr+BKGoqfTk7qACeN5mTcQc9/L3L9QlWmv2ttqQw
-/vQAoJ24Qtpia5dFhuPV+FoCT7BiNGqO
-=fBBk
+iEYEARECAAYFAk7btVIACgkQzr+BKGoqfTkvSQCeIs+/B2QGIg7umT9BYh63BzPc
+aSQAnjSqMPdcV4kmWk3jBg9Fmn5Cob/m
+=oSjy
 -----END PGP SIGNATURE-----

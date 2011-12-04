@@ -1,7 +1,9 @@
 package JSON::JOM::Node;
 
-use 5.008;
-use common::sense;
+use 5.010;
+use strict;
+use utf8;
+use Object::AUTHORITY;
 use UNIVERSAL::ref;
 
 use Carp qw[];
@@ -10,7 +12,11 @@ use Scalar::Util qw[];
 
 our ($META, $AUTOLOAD, $EXTENSIONS, $TIEMAP);
 
-our $VERSION   = '0.005';
+BEGIN
+{
+	$JSON::JOM::Node::AUTHORITY = 'cpan:TOBYINK';
+	$JSON::JOM::Node::VERSION   = '0.500';
+}
 
 sub import
 {
@@ -103,6 +109,11 @@ sub TO_JSON
 	Carp::croak "JSON::JOM::Node is abstract - use a subclass.";
 }
 
+sub toJSON
+{
+	Carp::croak "JSON::JOM::Node is abstract - use a subclass.";
+}
+
 sub nodeIndex  { return _meta('nodeIndex', @_); }
 sub rootNode   { return _meta('rootNode', @_); }
 sub parentNode { return _meta('parentNode', @_); }
@@ -152,6 +163,10 @@ available in JOM plugins.
 
 =item * C<typeof> - returns 'HASH', 'ARRAY', 'NULL', 'BOOLEAN', 'STRING', or 'NUMBER'
 
+=item * C<ref> - returns 'HASH', 'ARRAY' or undef
+
+=item * C<toJSON> - returns a JSON string representing the node. This is only a full valid JSON document if ref is defined.
+
 =item * C<rootNode> - a reference to the root node of the JOM structure.
 
 =item * C<isRootNode> - boolean; is this the root node of the JOM structure?
@@ -194,10 +209,16 @@ Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
 
 =head1 COPYRIGHT
 
-Copyright 2010 Toby Inkster
+Copyright 2010-2011 Toby Inkster
 
 This library is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
+
+=head1 DISCLAIMER OF WARRANTIES
+
+THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 =cut
 

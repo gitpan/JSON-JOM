@@ -1,30 +1,39 @@
-############################################################################
-## Changes #################################################################
-############################################################################
-
 JSON-JOM
 ========
 
 Created:      2010-08-22
-Home page:    <http://search.cpan.org/dist/JSON-JOM/>
+Home page:    <https://metacpan.org/release/JSON-JOM>
 Bug tracker:  <http://rt.cpan.org/Dist/Display.html?Queue=JSON-JOM>
 Maintainer:   Toby Inkster <mailto:tobyink@cpan.org>
 
-0.005 [2010-09-16]
+0.500  2011-12-04
+# First stable release
+
+ - (Update) use 5.010
+ - (Update) use Object::AUTHORITY
+ - (Packaging) Module::Package::RDF
+
+0.005  2010-09-16
+
  - Replace my own ref() solution with UNIVERSAL::ref.
 
-0.004 [2010-09-15]
+0.004  2010-09-15
+
  - JSON::JOM::Value better at distinguishing between numbers and strings.
 
-0.003 [2010-09-01]
+0.003  2010-09-01
+
  - Split common object/array parts of JOM into a JSON::JOM::Node abstract
    class.
  - (Addition) JSON::JOM::Plugins::TreeUtils.
  - (Addition) Make strings, numbers, booleans and nulls first class members
    of the JOM.
 
-0.002 [2010-08-26]
+0.002  2010-08-26
+
  - (Bugfix) rootNode stuff now actually works.
 
-0.001 [2010-08-25] # First release
+0.001  2010-08-25
+# First release
+
 

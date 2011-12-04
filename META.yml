@@ -8,14 +8,18 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.95'
+generated_by: 'Module::Install version 1.02'
+keywords:
+  - JSON
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
+module_name: JSON::JOM
 name: JSON-JOM
 no_index:
   directory:
+    - examples
     - inc
     - t
 requires:
@@ -24,15 +28,17 @@ requires:
   Exporter: 0
   JSON: 2.00
   Module::Pluggable: 0
+  Object::AUTHORITY: 0
   Scalar::Util: 0
   Tie::Array: 0
   Tie::Hash: 0
   UNIVERSAL::ref: 0.12
   common::sense: 0
-  perl: 5.8.0
+  parent: 0
+  perl: 5.10.0
 resources:
   bugtracker: http://rt.cpan.org/Dist/Display.html?Queue=JSON-JOM
-  homepage: http://search.cpan.org/dist/JSON-JOM/
+  homepage: https://metacpan.org/release/JSON-JOM
   license: http://dev.perl.org/licenses/
-  repository: http://goddamn.co.uk/viewvc/perlmods/JSON-JOM/
-version: 0.005
+  repository: https://bitbucket.org/tobyink/p5-json-jom
+version: 0.500

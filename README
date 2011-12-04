@@ -16,9 +16,6 @@ SYNOPSIS
      print $array->nodePath;  # $['foo']['bar']
 
 DESCRIPTION
-    Until version 0.100 the entire JOM API should be considered subject to
-    change without notice.
-
     JSON::JOM provides a DOM-like API for working with JSON.
 
     While JSON represents JSON arrays as Perl arrayrefs and JSON objects as
@@ -98,8 +95,7 @@ FUNCTIONS
     JSON parser compatible with JSON::from_json.
 
   "to_json($jom, \%options)"
-    JSON serialiser compatible with JSON::from_json, except that
-    convert_blessed is always true.
+    JSON serialiser mostly compatible with JSON::to_json.
 
   "to_jom($data)"
     Converts a Perl hashref/arrayref structure to its JOM equivalent.
@@ -119,8 +115,13 @@ AUTHOR
     Toby Inkster <tobyink@cpan.org>.
 
 COPYRIGHT
-    Copyright 2010 Toby Inkster
+    Copyright 2010-2011 Toby Inkster
 
     This library is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
+
+DISCLAIMER OF WARRANTIES
+    THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+    MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
