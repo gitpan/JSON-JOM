@@ -9,7 +9,7 @@ use JSON qw[to_json];
 BEGIN
 {
 	$JSON::JOM::Plugins::Dumper::AUTHORITY = 'cpan:TOBYINK';
-	$JSON::JOM::Plugins::Dumper::VERSION   = '0.500';
+	$JSON::JOM::Plugins::Dumper::VERSION   = '0.501';
 }
 
 sub extensions

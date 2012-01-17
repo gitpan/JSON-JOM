@@ -13,7 +13,7 @@ use Scalar::Util qw[];
 BEGIN
 {
 	$JSON::JOM::Object::AUTHORITY = 'cpan:TOBYINK';
-	$JSON::JOM::Object::VERSION   = '0.500';
+	$JSON::JOM::Object::VERSION   = '0.501';
 }
 
 sub new

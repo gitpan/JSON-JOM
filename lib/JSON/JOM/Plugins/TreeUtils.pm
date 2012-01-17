@@ -9,7 +9,7 @@ use JSON::JOM::Plugins::ListUtils;
 BEGIN
 {
 	$JSON::JOM::Plugins::TreeUtils::AUTHORITY = 'cpan:TOBYINK';
-	$JSON::JOM::Plugins::TreeUtils::VERSION   = '0.500';
+	$JSON::JOM::Plugins::TreeUtils::VERSION   = '0.501';
 }
 
 sub extensions

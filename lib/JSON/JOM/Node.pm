@@ -7,7 +7,12 @@ use Object::AUTHORITY;
 use UNIVERSAL::ref;
 
 use Carp qw[];
-use Module::Pluggable search_path => qw[JSON::JOM::Plugins], require => 1, sub_name => '_plugins', search_dirs => [qw[lib blib/lib]];
+use Module::Pluggable
+	search_path => qw[JSON::JOM::Plugins],
+	require     => 1,
+	sub_name    => '_plugins',
+	search_dirs => [qw[lib blib/lib]],
+	;
 use Scalar::Util qw[];
 
 our ($META, $AUTOLOAD, $EXTENSIONS, $TIEMAP);
@@ -15,7 +20,7 @@ our ($META, $AUTOLOAD, $EXTENSIONS, $TIEMAP);
 BEGIN
 {
 	$JSON::JOM::Node::AUTHORITY = 'cpan:TOBYINK';
-	$JSON::JOM::Node::VERSION   = '0.500';
+	$JSON::JOM::Node::VERSION   = '0.501';
 }
 
 sub import
@@ -59,14 +64,24 @@ sub DESTROY {}
 sub can
 {
 	my ($self, $method) = @_;
-	return 1
-		if UNIVERSAL::can($self, $method);
-	return 1
-		if defined $JSON::JOM::Node::EXTENSIONS->{ $self->typeof }->{ $method }
-		&& ref $JSON::JOM::Node::EXTENSIONS->{ $self->typeof }->{ $method } eq 'CODE';
-	return 1
-		if defined $JSON::JOM::Node::EXTENSIONS->{'NODE'}->{ $method }
-		&& ref $JSON::JOM::Node::EXTENSIONS->{'NODE'}->{ $method } eq 'CODE';
+
+	if (my $code = UNIVERSAL::can($self, $method))
+	{
+		return $code;
+	}
+	
+	if (defined $JSON::JOM::Node::EXTENSIONS->{ $self->typeof }->{ $method }
+	&&  ref $JSON::JOM::Node::EXTENSIONS->{ $self->typeof }->{ $method } eq 'CODE')
+	{
+		return $JSON::JOM::Node::EXTENSIONS->{ $self->typeof }->{ $method };
+	}
+	
+	if (defined $JSON::JOM::Node::EXTENSIONS->{'NODE'}->{ $method }
+	&&  ref $JSON::JOM::Node::EXTENSIONS->{'NODE'}->{ $method } eq 'CODE')
+	{
+		return $JSON::JOM::Node::EXTENSIONS->{'NODE'}->{ $method };
+	}
+	
 	return;
 }
 
@@ -93,16 +108,15 @@ sub _meta
 	return $self->meta->{$key};
 }
 
+sub typeof
+{
+	return;
+}
+
 sub new
 {
 	Carp::croak "JSON::JOM::Node is abstract - use a subclass.";
 }
-
-sub typeof
-{
-	Carp::croak "JSON::JOM::Node is abstract - use a subclass.";
-}
-*ref = \&typeof;
 
 sub TO_JSON
 {

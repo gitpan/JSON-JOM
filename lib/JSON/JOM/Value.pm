@@ -19,7 +19,7 @@ use JSON qw[];
 BEGIN
 {
 	$JSON::JOM::Value::AUTHORITY = 'cpan:TOBYINK';
-	$JSON::JOM::Value::VERSION   = '0.500';
+	$JSON::JOM::Value::VERSION   = '0.501';
 }
 
 sub new

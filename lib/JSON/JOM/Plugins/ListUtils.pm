@@ -8,7 +8,7 @@ use Object::AUTHORITY;
 BEGIN
 {
 	$JSON::JOM::Plugins::ListUtils::AUTHORITY = 'cpan:TOBYINK';
-	$JSON::JOM::Plugins::ListUtils::VERSION   = '0.500';
+	$JSON::JOM::Plugins::ListUtils::VERSION   = '0.501';
 }
 
 sub extensions

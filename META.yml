@@ -41,4 +41,4 @@ resources:
   homepage: https://metacpan.org/release/JSON-JOM
   license: http://dev.perl.org/licenses/
   repository: https://bitbucket.org/tobyink/p5-json-jom
-version: 0.500
+version: 0.501

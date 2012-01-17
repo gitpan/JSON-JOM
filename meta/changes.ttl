@@ -75,3 +75,16 @@ my:v_0-500
 		dcs:item   [ rdfs:label "Module::Package::RDF"@en ;  a dcs:Packaging ] 
 		] .
 
+my:project :release my:v_0-501 .
+my:v_0-501
+	a               :Version ;
+	dc:issued       "2012-01-17"^^xsd:date ;
+	:revision       "0.501"^^xsd:string ;
+	:file-release   <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/JSON-JOM-0.501.tar.gz> ;
+	dcs:changeset [
+		dcs:versus my:v_0-500 ;
+		dcs:item   [ rdfs:label "'can' method should return a coderef when object can do a method"@en ; a dcs:Bugfix ] ;
+		dcs:item   [ rdfs:label "JSON::JOM::Node abstract class, method 'typeof' returns undef instead of croaking"@en ] ;
+		dcs:item   [ rdfs:label "JSON::JOM::Node abstract class, method 'ref' no longer exists"@en ]
+		] .
+

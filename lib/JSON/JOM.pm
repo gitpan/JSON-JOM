@@ -19,7 +19,7 @@ our (@EXPORT, @EXPORT_OK, %EXPORT_TAGS);
 BEGIN
 {
 	$JSON::JOM::AUTHORITY = 'cpan:TOBYINK';
-	$JSON::JOM::VERSION   = '0.500';
+	$JSON::JOM::VERSION   = '0.501';
 
 	@EXPORT    = qw[];
 	@EXPORT_OK = qw[from_json to_json to_jom ref];
